@@ -1,3 +1,4 @@
+import 'package:animation_app/Animations/list_animation.dart';
 import 'package:flutter/material.dart';
 import 'Model/tile_data.dart';
 
@@ -11,8 +12,10 @@ class Home extends StatelessWidget {
       TileData("Animated CrossFade", "/animated_crossFade"),
       TileData("Hero Animation", "/hero_animation"),
       TileData("Animated Align", "/align_animation"),
-      TileData("Animated DefaultTextStyle", ""),
-      TileData("Animated Icon", ""),
+      TileData("Animated DefaultTextStyle", "/animated_textstyle"),
+      TileData("Animated Icon", "/animated_icon"),
+      TileData("Animated padding", "/animated_padding"),
+      TileData("Routing Animations", "/routing_animations"),
     ];
 
     return Scaffold(
@@ -23,13 +26,16 @@ class Home extends StatelessWidget {
       body: ListView.builder(
         itemCount: dataList.length,
         itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            onTap: () {
-              if (dataList[index].routeName != "") {
-                Navigator.pushNamed(context, dataList[index].routeName);
-              }
-            },
-            title: Text(dataList[index].name),
+          return CustomListAnimation(
+            index: index,
+            child: ListTile(
+              onTap: () {
+                if (dataList[index].routeName != "") {
+                  Navigator.pushNamed(context, dataList[index].routeName);
+                }
+              },
+              title: Text(dataList[index].name),
+            ),
           );
         },
       ),
